@@ -1,0 +1,11 @@
+cd /home/ubuntu/Linear
+
+cat << 'EOF' > docker-compose.yml
+version: '3.8'
+services:
+  linear-api:
+    image: wasiahmed1905/linear-api:v1
+    ports:
+      - "5000:5000"
+    restart: always
+EOF
