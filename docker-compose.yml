@@ -1,8 +1,10 @@
 cd /home/ubuntu/Linear
+
 rm -f docker-compose.yml
 
 cat << 'EOF' > docker-compose.yml
 version: '3.8'
+
 services:
   linear-api:
     image: wasiahmed1905/linear-api:v1
