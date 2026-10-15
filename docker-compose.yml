@@ -1,8 +1,6 @@
-cat > docker-compose.yml <<'EOF'
 services:
   linear-api:
     image: wasiahmed1905/linear-api:v1
     ports:
       - "5000:5000"
     restart: always
-EOF
