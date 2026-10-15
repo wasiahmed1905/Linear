@@ -1,19 +1,33 @@
 pipeline {
     agent any
-    triggers {
-        // Triggers the pipeline via the GitHub webhook[cite: 7]
-        githubPush() 
+
+    options {
+        disableConcurrentBuilds()
     }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                // Pulls your specific repository
-                git branch: "main", url: "https://github.com/wasiahmed1905/Linear.git"
-                
-                // Ensures the API is down initially, then brings it up[cite: 7]
-                sh "docker compose down"
-                sh "docker compose up -d"
+                checkout scm
             }
+        }
+
+        stage('Build Stage') {
+            steps {
+                sh 'docker compose down --remove-orphans || true'
+                sh 'docker compose pull'
+                sh 'docker compose up -d'
+                sh 'sleep 5 && curl -f http://localhost:5000/health || exit 1'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful — API is UP on port 5000.'
+        }
+        failure {
+            echo 'Deployment failed.'
         }
     }
 }
