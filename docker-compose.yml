@@ -1,9 +1,8 @@
+cat > docker-compose.yml <<'EOF'
 services:
-  prediction-api:
-    image: wasiahemd1905//linear-api:v1
-    container_name: prediction-api
+  linear-api:
+    image: wasiahmed1905/linear-api:v1
     ports:
       - "5000:5000"
-    environment:
-      - STUDENT_ROLL_NUMBER=44
-    restart: "no"
+    restart: always
+EOF
