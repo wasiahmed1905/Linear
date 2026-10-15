@@ -1,6 +1,6 @@
 services:
   prediction-api:
-    image: <your-dockerhub-username>/linear-regression-api:latest
+    image: wasiahemd1905//linear-api:v1
     container_name: prediction-api
     ports:
       - "5000:5000"
